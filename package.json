@@ -1,0 +1,27 @@
+{
+  "name": "librarysystem",
+  "version": "1.0.0",
+  "description": "Library system for keeping books in database",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "library",
+    "books",
+    "book",
+    "storage"
+  ],
+  "author": "Mateusz Tomczyk, Artur Marciniak, Katarzyna Janula",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.6",
+    "validator": "^10.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
