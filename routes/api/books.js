@@ -7,7 +7,7 @@ const validateBookInput = require("../../validation/book");
 // Book model
 const Book = require("../../models/Book");
 
-// @route   GET api/book/test
+// @route   GET api/books/test
 // @desc    Test book route
 router.get("/test", (req, res) => res.status(200).json({ msg: "Form works" }));
 

@@ -2,7 +2,7 @@
   "name": "librarysystem",
   "version": "1.0.0",
   "description": "Library system for keeping books in database",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -13,15 +13,21 @@
     "book",
     "storage"
   ],
-  "author": "Mateusz Tomczyk, Artur Marciniak, Katarzyna Janula",
+  "author": "Artur Marciniak, Mateusz Tomczyk",
   "license": "ISC",
   "dependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mongoose": "^5.3.6",
+    "react": "^16.7.0-alpha.2",
+    "react-dom": "^16.7.0-alpha.2",
     "validator": "^10.8.0"
   },
   "devDependencies": {
+    "babel-plugin-transform-es2015-modules-systemjs": "^6.24.1",
     "nodemon": "^1.18.4"
-  }
+  },
+  "repository": "https://github.com/RastaManWJ/LibrarySystem.git"
 }
