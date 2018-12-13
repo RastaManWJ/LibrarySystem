@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import Options from './components/Options'
+import SAppBar from './components/SAppBar'
 
 class App extends Component {
   render() {
-    const title = "Library System";
-    //const options = ["browse", "add", "delete", "modify"];
     return (
       <div className="App">
-        <h1>{title}</h1>
+        <SAppBar />
         <Options />
       </div>
     );

@@ -1,19 +1,40 @@
-import React, {Component} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import {NavLink} from 'react-router-dom';
 
-class Options extends Component {
-    render() {
-        return (
-            <div>
-                <h2>
-                    <NavLink to="/Browse" activeClassName="is-active">Browse</NavLink>
-                    <NavLink to="/Add" activeClassName="is-active">Add</NavLink>
-                    <NavLink to="/Delete" activeClassName="is-active">Delete</NavLink>
-                    <NavLink to="/Modify" activeClassName="is-active">Modify</NavLink>
-                </h2>
-            </div>
-        );
-    }
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
+
+function Options(props) {
+  const { classes } = props;
+  return (
+    <div>
+      <NavLink to="/Browse"><Button variant="contained" className={classes.button}>
+        Browse
+      </Button></NavLink>
+      <NavLink to="/Add"><Button variant="contained" className={classes.button}>
+        Add
+      </Button></NavLink>
+      <NavLink to="/Delete"><Button variant="contained" className={classes.button}>
+        Delete
+      </Button></NavLink>
+      <NavLink to="/Modify"><Button variant="contained" className={classes.button}>
+        Modify
+      </Button></NavLink>
+    </div>
+  );
 }
 
-export default Options;
+Options.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Options);
