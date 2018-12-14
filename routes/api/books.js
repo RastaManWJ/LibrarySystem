@@ -11,15 +11,27 @@ const Book = require("../../models/Book");
 // @desc    Test book route
 router.get("/test", (req, res) => res.status(200).json({ msg: "Form works" }));
 
-// @route   get api/book
+router.post("/dupka", (req, res) => {
+  console.log("cos");
+  console.log(req.body);
+  Book.find()
+  .then(books => {
+    if (!books) {
+      return res.status(404).json({ errors: "There are no books" });
+    }
+
+    return res.status(200).json(books);
+  })
+});
+
+// @route   get api/books/browse
 // @desc    Get all existing books from database and return them
-router.get("/", (req, res) => {
+router.get("/browse", (req, res) => {
   Book.find()
     .then(books => {
       if (!books) {
-        return res.status(404).json({ errors: "There are no users" });
+        return res.status(404).json({ errors: "There are no books" });
       }
-
       return res.status(200).json(books);
     })
 });
@@ -27,11 +39,15 @@ router.get("/", (req, res) => {
 // @route   POST api/book/add
 // @desc    Add new book to database
 router.post("/add", (req, res) => {
+  console.log("Cos sie dzieje");
+  console.log(req.body);
   const { errors, isValid } = validateBookInput(req.body);
 
   if (!isValid) {
+    console.log(errors);
     return res.status(400).json(errors);
   }
+
 
   const newBook = new Book({
     title: req.body.title,
@@ -60,7 +76,7 @@ router.post("/:id", (req, res) => {
 // @route   PUT api/books/:id
 // @desc    Edit an existing book from database
 router.put("/:id", (req, res) => {
-  const { errors, isValid } = validateGameInput(req.body); /////////////////////////////////////////////////
+  const { errors, isValid } = validateBookInput(req.body);
 
   if (!isValid) {
     // Return any errors with 400 status
@@ -96,36 +112,4 @@ router.put("/:id", (req, res) => {
   });
 })
 
-//
-
-router.get("/dupka", (req, res) => {
-  console.log("cos");
-  console.log(req);
-  res.status(200).json({ msg: "Form works" });
-  
-
-  //const { errors, isValid } = validateBookInput(req.body);
-
-  // if (!isValid) {
-  //   return res.status(400).json(errors);
-  // }
-
-  // const newBook = new Book({
-  //   title: req.body.title,
-  //   author: req.body.author,
-  //   publisher: req.body.publisher,
-  //   isbn: req.body.isbn,
-  //   release: req.body.release,
-  //   releaseDate: req.body.releaseDate,
-  //   numberOfPages: req.body.numberOfPages,
-  //   language: req.body.language,
-  //   category: req.body.category,
-  //   keyWords: req.body.keyWords,
-  //   description: req.body.description
-  // });
-
-  //newBook.save().then(book => res.status(200).json(book));
-});
-
-//
 module.exports = router;

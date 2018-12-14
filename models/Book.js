@@ -13,22 +13,22 @@ const BookSchema = new Schema({
   },
   isbn: {
     type: String,
-    required: true,
+    required: true
   },
   publisher: {
     type: String,
-    required: true,
+    required: true
   },
   release: {
     type: String,
   },
   releaseDate: {
     type: Date,
-    required: true,
+    required: true
   },
   numberOfPages: {
     type: Number,
-    required: true,
+    required: true
   },
   language: {
     type: String,
@@ -41,7 +41,6 @@ const BookSchema = new Schema({
   },
   description: {
     type: String,
-    required: true,
   },
   createdAt: {
     type: Date,
@@ -49,4 +48,4 @@ const BookSchema = new Schema({
   }
 });
 
-module.exports = Book = mongoose.model("books", BookSchema);
+module.exports = Book = mongoose.model("Book", BookSchema, "Books");
