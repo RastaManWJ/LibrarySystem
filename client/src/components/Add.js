@@ -66,17 +66,65 @@ class Add extends React.Component {
             numberOfPages: '',
             language: '',
             category: '',
-            keyWords: '',
+            keywords: '',
             description: '',
+            HTtitle: "",
+            HTauthor: "",
+            HTisbn: "",
+            HTpublisher: "",
+            HTnumberOfPages: "",
+            Errtitle: false,
+            Errauthor: false,
+            Errisbn: false,
+            Errpublisher: false,
+            ErrnumberOfPages: false
          };
     }
   
 
    submitHandler() {
+        this.setState({
+            HTtitle: "",
+            HTauthor: "",
+            HTisbn: "",
+            HTpublisher: "",
+            HTnumberOfPages: "",
+            Errtitle: false,
+            Errauthor: false,
+            Errisbn: false,
+            Errpublisher: false,
+            ErrnumberOfPages: false
+        })
         console.log("submitHandler");
-        axios.post('http://localhost:5000/api/books/add', this.state)
-            .then(res => {console.log(res)})
-            .catch(e => console.log(e));
+        let bookBody = {
+            title: this.state.title,
+            author: this.state.author,
+            publisher: this.state.publisher,
+            isbn: this.state.isbn,
+            release: this.state.release,
+            releaseDate: this.state.releaseDate,
+            numberOfPages: this.state.numberOfPages,
+            language: this.state.language,
+            category: this.state.category,
+            keywords: this.state.keywords,
+            description: this.state.description,
+        }
+        axios.post('http://localhost:5000/api/books/add', bookBody)
+            .then(res => {//console.log(res);
+                  alert("Book added succesfully!");
+                  window.location.reload();})
+            .catch(e => {//console.log(e.response.data);
+                  let errors = e.response.data;
+                  for (var key in errors) {
+                    if (errors.hasOwnProperty(key)) {
+                      this.setState({
+                        ["HT" + key]: errors[key],
+                        ["Err" + key]: true
+                      })
+                    }
+                  }
+                  });
+        
    };
 
   handleChange = name => event => {
@@ -98,6 +146,8 @@ class Add extends React.Component {
           label="Title"
           className={classes.textField}
           required
+          helperText={this.state.HTtitle}
+          error={this.state.Errtitle}
           onChange={this.handleChange('title')}
           margin="normal"
           variant="outlined"
@@ -107,6 +157,8 @@ class Add extends React.Component {
           label="Author"
           className={classes.textField}
           required
+          helperText={this.state.HTauthor}
+          error={this.state.Errauthor}
           onChange={this.handleChange('author')}
           margin="normal"
           variant="outlined"
@@ -116,6 +168,8 @@ class Add extends React.Component {
           label="Publisher"
           className={classes.textField}
           required
+          helperText={this.state.HTpublisher}
+          error={this.state.Errpublisher}
           onChange={this.handleChange('publisher')}
           margin="normal"
           variant="outlined"
@@ -125,6 +179,8 @@ class Add extends React.Component {
           label="ISBN"
           className={classes.textField}
           required
+          helperText={this.state.HTisbn}
+          error={this.state.Errisbn}
           onChange={this.handleChange('isbn')}
           margin="normal"
           variant="outlined"
@@ -153,6 +209,8 @@ class Add extends React.Component {
           label="Number of Pages"
           className={classes.textField}
           required
+          helperText={this.state.HTnumberOfPages}
+          error={this.state.ErrnumberOfPages}
           onChange={this.handleChange('numberOfPages')}
           margin="normal"
           variant="outlined"
@@ -169,8 +227,8 @@ class Add extends React.Component {
           variant="outlined"
         />
         <TextField
-          id="Category"
-          label="CategoryBox"
+          id="CategoryBox"
+          label="Category"
           className={classes.textField}
           onChange={this.handleChange('category')}
           margin="normal"
@@ -178,9 +236,9 @@ class Add extends React.Component {
         />
         <TextField
           id="KeyWordsBox"
-          label="Key Words"
+          label="Keywords"
           className={classes.textField}
-          onChange={this.handleChange('keyWords')}
+          onChange={this.handleChange('keywords')}
           margin="normal"
           variant="outlined"
         />

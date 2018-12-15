@@ -36,7 +36,7 @@ const BookSchema = new Schema({
   category: {
     type: String,
   },
-  keyWords: {
+  keywords: {
     type: String,
   },
   description: {

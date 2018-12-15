@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Icon from '@material-ui/core/Icon';
 
 const styles = theme => ({
   root: {
@@ -19,8 +20,8 @@ const styles = theme => ({
   },
 });
 
-function BrowseList(props) {
-  const { classes, books } = props;
+function DeleteList(props) {
+  const { classes, books, handleRemove } = props;
 
   return (
     <Paper className={classes.root}>
@@ -38,6 +39,7 @@ function BrowseList(props) {
             <TableCell>Category</TableCell>
             <TableCell>Keywords</TableCell>
             <TableCell>Description</TableCell>
+            <TableCell>Delete Book</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -57,6 +59,11 @@ function BrowseList(props) {
                 <TableCell>{book.category}</TableCell>
                 <TableCell>{book.keywords}</TableCell>
                 <TableCell>{book.description}</TableCell>
+                <TableCell>
+                    <Icon onClick={() => handleRemove(book._id)}>
+                    {<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />}
+                    <Icon className={classes.rightIcon}>delete</Icon></Icon>
+                </TableCell>
               </TableRow>
             );
           })}
@@ -66,8 +73,8 @@ function BrowseList(props) {
   );
 }
 
-BrowseList.propTypes = {
+DeleteList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(BrowseList);
+export default withStyles(styles)(DeleteList);

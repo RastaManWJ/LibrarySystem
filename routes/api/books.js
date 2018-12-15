@@ -39,7 +39,6 @@ router.get("/browse", (req, res) => {
 // @route   POST api/book/add
 // @desc    Add new book to database
 router.post("/add", (req, res) => {
-  console.log("Cos sie dzieje");
   console.log(req.body);
   const { errors, isValid } = validateBookInput(req.body);
 
@@ -47,7 +46,6 @@ router.post("/add", (req, res) => {
     console.log(errors);
     return res.status(400).json(errors);
   }
-
 
   const newBook = new Book({
     title: req.body.title,
@@ -59,7 +57,7 @@ router.post("/add", (req, res) => {
     numberOfPages: req.body.numberOfPages,
     language: req.body.language,
     category: req.body.category,
-    keyWords: req.body.keyWords,
+    keywords: req.body.keywords,
     description: req.body.description
   });
 
@@ -69,7 +67,7 @@ router.post("/add", (req, res) => {
 // @route   POST api/books/:id
 // @desc    Delete an existing book from database
 router.post("/:id", (req, res) => {
-  Book.findOneAndDelete({_id: req.params.id})
+  Book.findOneAndDelete({_id: req.body.id})
   .then(() => res.status(200).json({ msg: "success"}));
 });
 
@@ -95,7 +93,7 @@ router.put("/:id", (req, res) => {
   data.numberOfPages = req.body.numberOfPages;
   data.language = req.body.language;
   data.category = req.body.category;
-  data.keyWords = req.body.keyWords;
+  data.keywords = req.body.keywords;
   data.description = req.body.description;
 
   Book.findOne({ _id: req.params.id }).then(book => {

@@ -17,27 +17,27 @@ module.exports = function validateBookInput(data) {
   //data.description = !isEmpty(data.description) ? data.description : "";
 
   if (Validator.isEmpty(data.title)) {
-    errors.title = "Book title must be specified";
+    errors.title = "Title must be specified";
   }
 
   if (Validator.isEmpty(data.author)) {
-    errors.author = "Book author must be specified";
+    errors.author = "Author must be specified";
   }
 
   if (Validator.isEmpty(data.isbn)) {
-    errors.isbn = "Book isbn must be specified";
+    errors.isbn = "ISBN must be specified";
   }
 
   if (Validator.isEmpty(data.publisher)) {
-    errors.publisher = "Book publisher must be specified";
+    errors.publisher = "Publisher must be specified";
   }
 
   if (Validator.isEmpty(data.releaseDate)) {
-    errors.releaseDate = "Book releaseDate must be specified";
+    errors.releaseDate = "Release Date must be specified";
   }
 
   if (Validator.isEmpty(data.numberOfPages)) {
-    errors.numberOfPages = "Book number of pages must be specified";
+    errors.numberOfPages = "Number of pages must be specified";
   }
 
   return {
