@@ -53,7 +53,7 @@ function DeleteList(props) {
                 <TableCell>{book.publisher}</TableCell>
                 <TableCell>{book.isbn}</TableCell>
                 <TableCell>{book.release}</TableCell>
-                <TableCell>{book.releaseDate}</TableCell>
+                <TableCell>{book.releaseDate.split('T')[0]}</TableCell>
                 <TableCell>{book.numberOfPages}</TableCell>
                 <TableCell>{book.language}</TableCell>
                 <TableCell>{book.category}</TableCell>

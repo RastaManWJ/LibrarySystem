@@ -60,20 +60,14 @@ router.post("/add", (req, res) => {
     keywords: req.body.keywords,
     description: req.body.description
   });
-
+  console.log(newBook);
   newBook.save().then(book => res.status(200).json(book));
-});
-
-// @route   POST api/books/:id
-// @desc    Delete an existing book from database
-router.post("/:id", (req, res) => {
-  Book.findOneAndDelete({_id: req.body.id})
-  .then(() => res.status(200).json({ msg: "success"}));
 });
 
 // @route   PUT api/books/:id
 // @desc    Edit an existing book from database
-router.put("/:id", (req, res) => {
+router.post("/edit", (req, res) => {
+  console.log("cos sie dzieje");
   const { errors, isValid } = validateBookInput(req.body);
 
   if (!isValid) {
@@ -95,19 +89,39 @@ router.put("/:id", (req, res) => {
   data.category = req.body.category;
   data.keywords = req.body.keywords;
   data.description = req.body.description;
-
-  Book.findOne({ _id: req.params.id }).then(book => {
+  console.log(req.body._id);
+  Book.findOne({ '_id': req.body._id }).then(book => {
     if(book) {
       // Update book
       Book.findOneAndUpdate(
-        { _id: req.params.id },
-        { $set: data },
+        { _id: req.body._id },
+        { title: data.title,
+          author: data.author,
+          isbn: data.isbn,
+          publisher: data.publisher,
+          release: data.release,
+          releaseDate: data.releaseDate,
+          numberOfPages: parseInt(data.numberOfPages),
+          language: data.language,
+          category: data.category,
+          keywords: data.keywords,
+          description: data.description},
         { new: false }
       ).then(book => res.status(200).json(book));
     } else {
       res.status(404).json({ book: "There is no such book" });
     }
+
   });
 })
+
+// @route   POST api/books/:id
+// @desc    Delete an existing book from database
+router.post("/:id", (req, res) => {
+  Book.findOneAndDelete({_id: req.body.id})
+  .then(() => res.status(200).json({ msg: "success"}));
+});
+
+
 
 module.exports = router;
