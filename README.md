@@ -1,5 +1,5 @@
 ## LibrarySystem
-An academic project from 2018. Application was meant to store information about books in form of database record (information like title, author, isbn, genre, etc.).
+An academic project from 2018, pair programming: [@RastaManWJ](https://github.com/RastaManWJ) and [@Dimolek](https://github.com/Dimolek). Application was meant to store information about books in form of database record (information like title, author, isbn, genre, etc.).
 Functionality:
  * adding books
  * removing books
