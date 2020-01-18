@@ -7,7 +7,7 @@ Functionality:
  * filter records using certain criteria
   
 # GUI
-![Screenshoot](https://media.discordapp.net/attachments/522694787653173248/668042814151720960/LibrarySystem.png?width=963&height=517)
+![Screenshoot](https://media.discordapp.net/attachments/522694787653173248/668047337561653248/abc.png?width=962&height=517)
 
 # Technologies
 App was created in VS Code using:
