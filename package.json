@@ -24,7 +24,7 @@
     "mongoose": "^5.3.6",
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",
-    "validator": "^10.8.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "babel-plugin-transform-es2015-modules-systemjs": "^6.24.1",
